@@ -1,0 +1,46 @@
+group 'com.sophos'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.90")
+    }
+}
+
+ext {
+    serenityVersion = '2.0.90'
+    serenityCucumberVersion = '1.9.49'
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    compile "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+    compile "net.serenity-bdd:serenity-ensure:$rootProject.ext.serenityVersion"
+    testCompile 'org.slf4j:slf4j-simple:1.7.7'
+
+}
+
+test {
+    systemProperty "file.encoding", "utf-8"
+    systemProperty "context", System.properties.getProperty("context")
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
