@@ -1,4 +1,4 @@
-package com.sophos.promart.util;
+package com.sophos.gorest.util;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ public class CommonFunctions {
      * @param smallerNumber Variable tipo int que representa el número menor del intervalo
      * @return Variable tipo String que representa el número aleatorio elegido entre el intervalo ingresado
      */
-    public Integer getRandomNumberInterval(int biggerNumber, int smallerNumber) {
-        return (new Random()).nextInt(biggerNumber - smallerNumber + 1) + smallerNumber;
+    public String getRandomNumberInterval(int biggerNumber, int smallerNumber) {
+        return Integer.toString((new Random()).nextInt(biggerNumber - smallerNumber + 1) + smallerNumber);
     }
 }
